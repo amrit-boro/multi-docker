@@ -12,3 +12,9 @@ after_success:
   - docker build -t amrit/multi-nginx ./nginx
   - docker build -t amrit/multi-server ./server
   - docker build -t amrit/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push amrit/multi-client
+  - docker push amrit/multi-worker
+  - docker push amrit/multi-nginx
+  - docker push amrit/multi-server
